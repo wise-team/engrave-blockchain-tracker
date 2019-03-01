@@ -1,3 +1,6 @@
 [submodule "src/submodules/engrave-shared"]
 	path = src/submodules/engrave-shared
 	url = https://github.com/wise-team/engrave-shared.git
+[submodule "src/submodules/--force"]
+	path = src/submodules/--force
+	url = https://github.com/wise-team/engrave-shared.git
