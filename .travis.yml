@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+
+before_script:
+  - docker pull wiseteam/wykoplaner-blockchain-tracker || true # true to not fail if repository is empty
+  - git submodule update --init --remote
+
+script:
+  - docker build --pull --cache-from wiseteam/wykoplaner-blockchain-tracker . -f ./Dockerfile.production -t wiseteam/wykoplaner-blockchain-tracker
+
+after_script:
+  - docker images
+
+before_deploy:
+  - docker login -u "$HUB_USERNAME" -p "$HUB_PASSWORD"
+
+deploy:
+  provider: script
+  script: docker push wiseteam/wykoplaner-blockchain-tracker
+  on:
+    branch: master
