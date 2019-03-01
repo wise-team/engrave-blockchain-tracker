@@ -3,11 +3,11 @@ services:
   - docker
 
 before_script:
-  - docker pull wiseteam/wykoplaner-blockchain-tracker || true # true to not fail if repository is empty
+  - docker pull wiseteam/engrave-blockchain-tracker || true # true to not fail if repository is empty
   - git submodule update --init --remote
 
 script:
-  - docker build --pull --cache-from wiseteam/wykoplaner-blockchain-tracker . -f ./Dockerfile.production -t wiseteam/wykoplaner-blockchain-tracker
+  - docker build --pull --cache-from wiseteam/engrave-blockchain-tracker . -f ./Dockerfile.production -t wiseteam/engrave-blockchain-tracker
 
 after_script:
   - docker images
@@ -17,6 +17,6 @@ before_deploy:
 
 deploy:
   provider: script
-  script: docker push wiseteam/wykoplaner-blockchain-tracker
+  script: docker push wiseteam/engrave-blockchain-tracker
   on:
     branch: master
